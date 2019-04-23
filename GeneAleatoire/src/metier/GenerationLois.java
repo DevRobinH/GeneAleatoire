@@ -52,15 +52,44 @@ public class GenerationLois {
 	 * @param s est l'écart type de la loi normale
 	 */
 	public static double loiNormale(double m, double s) {
-		
-		double centreReduite;
-		
+		// Initialisation de deux nombre suivant une loi uniforme
 		double u = loiUniforme();
 		double v = loiUniforme();
 		
-		centreReduite = Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
-
-		return centreReduite * s + m;
+		return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+	}
+	
+	/** Génération de nombre aléatoire suivant une loi de poisson discrete
+	 * @param lambda 
+	 * @param T 
+	 * @return res
+	 */
+	public static int loiPoisson(double lambda, double T) {				
+		double res;
+		double expo = 0;
+		int compteur;
+		
+		for (compteur = 0 ; expo < T ; compteur++) {
+			expo += loiExponentielle(lambda);
+		}
+		
+		return compteur;
+	}
+	
+	/**
+	 * Génération de nombre aléatoire suivant une loi de Weibull
+	 * @param alpha 
+	 * @param beta 
+	 * @return res
+	 */
+	public static double loiWeibull(double alpha, double beta) {
+		
+		double res;
+		
+		double y = loiUniforme();
+		
+		res = Math.pow((-(Math.log(1-y)/Math.pow(alpha, beta))),1/beta);
+		return res;	
 	}
 
 	/**
@@ -90,5 +119,4 @@ public class GenerationLois {
 		System.out.println("Moyenne : " + save / NB_VALEUR);
 		
 	}
-
 }
