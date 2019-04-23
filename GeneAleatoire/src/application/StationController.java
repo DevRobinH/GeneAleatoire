@@ -1,9 +1,13 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import metier.GenerationLois;
 
 public class StationController {
 
@@ -93,7 +97,7 @@ public class StationController {
 	/**
 	 * Réinitialise tous les champs
 	 */
-	public void reinitialiser(ActionEvent evt){
+	public void reinitialiser(){
 
 		// Vide les classes
 		classe1.setText(null);
@@ -197,8 +201,17 @@ public class StationController {
 	 * @param Evenement au clic du bouton "Loi Uniforme"
 	 */
 	public void actionLoiUniforme(ActionEvent evt){
+		// On vide au préalable les champs
+		reinitialiser();
 		System.out.println("\nAction loi uniforme");
-
+        // tableau servant à obtenir n_obs
+		int repartition[] = new int[10];
+		
+		// somme de toutes les valeurs générées
+		int somme = 0;
+		// Liste des valeurs générées
+		List<Double> valAleas = new ArrayList<>();
+		
 		//initialisation des champs texte de classe
 		classe1.setText("0-0,1");
 		classe2.setText("0,1-0,2");
@@ -210,6 +223,66 @@ public class StationController {
 		classe8.setText("0,7-0,8");
 		classe9.setText("0,8-0,9");
 		classe10.setText("0,9-1,0");
+		
+		//génération des nombres aléatoires
+		for(int i =0; i < this.nbJets; i++) {
+			// Génération d'un nombre aléatoire
+			double nbAlea = GenerationLois.loiUniforme();
+			// determination de n_obs
+			if (nbAlea < 0.1 ) {
+				repartition[0]++;
+			} else if (nbAlea < 0.2 ) {
+				repartition[1]++;
+			} else if (nbAlea < 0.3 ) {
+				repartition[2]++;
+			} else if (nbAlea < 0.4 ) {
+				repartition[3]++; 
+			} else if (nbAlea < 0.5 ) {
+				repartition[4]++;
+			} else if (nbAlea < 0.6 ) {
+				repartition[5]++;
+			} else if (nbAlea < 0.7 ) {
+				repartition[6]++;
+			} else if (nbAlea < 0.8 ) {
+				repartition[7]++;
+			} else if (nbAlea < 0.9 ) {
+				repartition[8]++;
+			} else {
+				repartition[9]++;
+			}
+			
+			// ajout du nombre créé à la liste
+			valAleas.add(nbAlea);
+			// calcul de la somme
+			somme += nbAlea;
+		}
+		
+		// obtention du n_th
+		int n_th = this.nbJets/10;
+		
+		// On va compléter les cases n_obs de l'ihm
+		obs1.setText(Integer.toString(repartition[0]));
+		obs2.setText(Integer.toString(repartition[1]));
+		obs3.setText(Integer.toString(repartition[2]));
+		obs4.setText(Integer.toString(repartition[3]));
+		obs5.setText(Integer.toString(repartition[4]));
+		obs6.setText(Integer.toString(repartition[5]));
+		obs7.setText(Integer.toString(repartition[6]));
+		obs8.setText(Integer.toString(repartition[7]));
+		obs9.setText(Integer.toString(repartition[8]));
+		obs10.setText(Integer.toString(repartition[9]));
+		
+		// On va compléter les cases n_th de l'ihm
+		th1.setText(Integer.toString(n_th));
+		th2.setText(Integer.toString(n_th));
+		th3.setText(Integer.toString(n_th));
+		th4.setText(Integer.toString(n_th));
+		th5.setText(Integer.toString(n_th));
+		th6.setText(Integer.toString(n_th));
+		th7.setText(Integer.toString(n_th));
+		th8.setText(Integer.toString(n_th));
+		th9.setText(Integer.toString(n_th));
+		th10.setText(Integer.toString(n_th));
 	}
 
 	/**
