@@ -48,10 +48,9 @@ public class GenerationLois {
 	
 	/**
 	 * Génération de nombre aléatoire suivant une loi normale
-	 * @param m est la moyenne de la loi normale
-	 * @param s est l'écart type de la loi normale
+	 * @return un nombre aléatoire
 	 */
-	public static double loiNormale(double m, double s) {
+	public static double loiNormale() {
 		// Initialisation de deux nombre suivant une loi uniforme
 		double u = loiUniforme();
 		double v = loiUniforme();
@@ -110,9 +109,9 @@ public class GenerationLois {
 		}
 		
 		for(int i = 0 ; i<NB_VALEUR ; i++) {
-			System.out.println("NORMALE : " + loiNormale(0,1));
+			System.out.println("NORMALE : " + loiNormale());
 			
-			res= loiNormale(4,1);
+			res= loiNormale();
 			save += res;
 		}
 		
