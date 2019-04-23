@@ -89,11 +89,12 @@ public class StationController {
 	private Button btNormale;
 	@FXML
 	private Button btPoisson;
-	
+
 	@FXML
 	private Label lbDegres;
 	@FXML
 	private Label lbKhi2;
+
 	@FXML
 	private Label lbKhi2Theorique;
 	
@@ -122,11 +123,11 @@ public class StationController {
 	private TextField khiClasse9;
 	@FXML
 	private TextField khiClasse10;
-	
+
 
 	/** Nombre de jets de simulation*/
 	private int nbJets = 100;
-	
+
 	/** Paramètre lambda de la fonction exp*/
 	private int lambdaExp = 2;
 
@@ -246,7 +247,7 @@ public class StationController {
 		// On vide au préalable les champs
 		reinitialiser();
 		System.out.println("\nAction loi uniforme");
-        // tableau servant à obtenir n_obs
+		// tableau servant à obtenir n_obs
 		int repartition[] = new int[10];
 		//tableau contenant le khi2 de chaque
 		double khi[] = new double[10];
@@ -260,7 +261,7 @@ public class StationController {
 		double moyenne;
 		//Espérance de la loi uniforme
 		double esperance;
-		
+
 		//initialisation des champs texte de classe
 		classe1.setText("0-0,1");
 		classe2.setText("0,1-0,2");
@@ -272,7 +273,7 @@ public class StationController {
 		classe8.setText("0,7-0,8");
 		classe9.setText("0,8-0,9");
 		classe10.setText("0,9-1,0");
-		
+
 		//génération des nombres aléatoires
 		for(int i =0; i < this.nbJets; i++) {
 			// Génération d'un nombre aléatoire
@@ -299,7 +300,7 @@ public class StationController {
 			} else {
 				repartition[9]++;
 			}
-			
+
 			// ajout du nombre créé à la liste
 			valAleas.add(nbAlea);
 			// calcul de la somme
@@ -316,13 +317,13 @@ public class StationController {
 		System.out.println(esperance);
 		// obtention du n_th
 		int n_th = this.nbJets/10;
-		
+
 		// Détermination du khi2 de chaque classe
 		for(int i = 0; i < repartition.length; i++) {
 			khi[i] = Math.pow((repartition[i]-n_th), 2) / n_th;
 			totalKhi += khi[i];
 		}
-		
+
 		// On va compléter les cases n_obs de l'ihm
 		obs1.setText(Integer.toString(repartition[0]));
 		obs2.setText(Integer.toString(repartition[1]));
@@ -334,7 +335,7 @@ public class StationController {
 		obs8.setText(Integer.toString(repartition[7]));
 		obs9.setText(Integer.toString(repartition[8]));
 		obs10.setText(Integer.toString(repartition[9]));
-		
+
 		// On va compléter les cases n_th de l'ihm
 		th1.setText(Integer.toString(n_th));
 		th2.setText(Integer.toString(n_th));
@@ -346,6 +347,21 @@ public class StationController {
 		th8.setText(Integer.toString(n_th));
 		th9.setText(Integer.toString(n_th));
 		th10.setText(Integer.toString(n_th));
+
+		// On va compléter les cases n_th de l'ihm
+		khiClasse1.setText(Double.toString(khi[0]));
+		khiClasse2.setText(Double.toString(khi[1]));
+		khiClasse3.setText(Double.toString(khi[2]));
+		khiClasse4.setText(Double.toString(khi[3]));
+		khiClasse5.setText(Double.toString(khi[4]));
+		khiClasse6.setText(Double.toString(khi[5]));
+		khiClasse7.setText(Double.toString(khi[6]));
+		khiClasse8.setText(Double.toString(khi[7]));
+		khiClasse9.setText(Double.toString(khi[8]));
+		khiClasse10.setText(Double.toString(khi[9]));
+		
+		// Ecriture du khi2_th
+		lbKhi2.setText(Double.toString(Math.round(totalKhi)));
 	}
 
 	/**
