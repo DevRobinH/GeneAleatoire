@@ -494,15 +494,25 @@ public class StationController {
 	 * @param Evenement au clic du bouton "Loi Normale"
 	 */
 	public void actionLoiNormale(ActionEvent evt){
+
+		// On vide au préalable les champs
+		reinitialiser();
 		System.out.println("\nAction loi Normale");
-		//initialisation des champs texte de classe
-		classe1.setText("<- 1,0");
-		classe2.setText("-1");
-		classe3.setText("-0,6");
-		classe4.setText("-0,2");
-		classe5.setText("0,2");
-		classe6.setText("0,6");
-		classe7.setText("> 1");
+		
+		// Détermination nombre de degré		
+		lbDegres.setText("6");
+		
+		// Khi² théorique
+		lbKhi2Theorique.setText("12,59");
+		
+		// initialisation des champs texte de classe
+		classe1.setText("<- 1");
+		classe2.setText("-1 à -0.6");
+		classe3.setText("-0,6 à -0,2");
+		classe4.setText("-0,2 à 0,2");
+		classe5.setText("0,2 à 0,6");
+		classe6.setText("0,6 à 1");
+		classe7.setText("> 1");		
 	}
 
 	/**
