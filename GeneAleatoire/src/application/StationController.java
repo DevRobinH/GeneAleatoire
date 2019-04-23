@@ -137,7 +137,7 @@ public class StationController {
 		int nbJetsChoisis = 0;
 		
 		// Si le champ à récupérer n'est pas null
-		if (recup != ""){
+		if (!recup.equals("")){
 			
 			// On le récupère
 			nbJetsChoisis = Integer.parseInt(recup);
@@ -164,7 +164,7 @@ public class StationController {
 		int lambdaChoisi = 0;
 		
 		// Si le champ à récupérer n'est pas null
-		if (recup != ""){
+		if (!recup.equals("")){
 			
 			// On le récupère
 			lambdaChoisi = Integer.parseInt(recup);
@@ -200,6 +200,18 @@ public class StationController {
 	 */
 	public void actionLoiUniforme(ActionEvent evt){
 		System.out.println("\nAction loi uniforme");
+		
+		//initialisation des champs texte de classe
+		classe1.setText("0-0,1");
+		classe2.setText("0,1-0,2");
+		classe3.setText("0,2-0,3");
+		classe4.setText("0,3-0,4");
+		classe5.setText("0,4-0,5");
+		classe6.setText("0,5-0,6");
+		classe7.setText("0,6-0,7");
+		classe8.setText("0,7-0,8");
+		classe9.setText("0,8-0,9");
+		classe10.setText("0,9-1,0");
 	}
 	
 	/**
