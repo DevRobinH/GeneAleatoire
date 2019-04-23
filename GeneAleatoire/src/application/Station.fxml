@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="application.SampleController">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="application.StationController">
    <top>
       <Pane prefHeight="500.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
