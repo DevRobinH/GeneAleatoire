@@ -1,69 +1,66 @@
-/**
- * Génération de nombre aléatoire
+/*
+ * 3iL promotion 2017
+ * 23/04/2019 
  */
 package metier;
 
 import java.util.Random;
 
 /**
- * 
- * @author mickaël
+ * Générateur de nombres aléatoires
+ * <ul>
+ *     <li>Loi uniforme</li>
+ *     <li>Loi exponentielle</li>
+ *     <li>Loi normale</li>
+ *     <li>Loi de Poisson</li>
+ * </ul>
+ * @author Quentin MS, Florent Mamprin, Robin Henry
+ * @version 1.0
  */
 public class GenerationLois {
 	
-	/** Nombre de valeurs à généré dans les différentes lois */
-	protected final static int NB_VALEUR = 1000;
+	/** Nombre de valeurs que l'on va générer */
+	public final static int NB_VALEUR = 1000;
 	
 	
 	/**
-	 * Génaration d'une loi uniforme
-	 * @return 
+	 * Génaration de nombre aléatoire en suivant une loi uniforme
+	 * @return  un nombre compris entre 0.0 et 1.0
 	 */
-	public static double LoiUniforme() {
-		
+	public static double loiUniforme() {
+		// Création d'un objet ramdom afin de générer un nombre aléatoire
 		Random rng = new Random();
-		
-		double res = rng.nextDouble(); 
-				
-		return res;
 			
+		return rng.nextDouble();			
 	}
 	
 	/**
-	 * Génération d'une loi exponentielle
-	 * @param a
-	 * @return
+	 * Génération de nombre aléatoire en suivant une loi exponentielle
+	 * @param lambda paramètre de la loi exponentielle
+	 * @return un nombre aléatoire 
 	 */
-	public static double LoiExponentielle(double l) {
-			
-		double res;
+	public static double loiExponentielle(double lambda) {
+        // Génération d'un nombre aléatoire
+		double x = loiUniforme();		
 		
-		double x = LoiUniforme();
-		
-		res = -(1/l) * Math.log(x);		
-		
-		return res;
-		
+		return -(1/lambda) * Math.log(1 - x);	
 	}
 	
 	/**
-	 * Génération d'une loi normale
-	 * @param m est la moyenne de la loie normale
-	 * @param s est l'écart type de la loie normale
+	 * Génération de nombre aléatoire suivant une loi normale
+	 * @param m est la moyenne de la loi normale
+	 * @param s est l'écart type de la loi normale
 	 */
-	public static double LoiNormale(double m, double s) {
+	public static double loiNormale(double m, double s) {
 		
-		double centre_reduite;
-		double res;
+		double centreReduite;
 		
-		double u = LoiUniforme();
-		double v = LoiUniforme();
+		double u = loiUniforme();
+		double v = loiUniforme();
 		
-		centre_reduite = Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
-		
-		res = centre_reduite * s + m;
-		
-		return res;
+		centreReduite = Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+
+		return centreReduite * s + m;
 	}
 
 	/**
@@ -76,17 +73,17 @@ public class GenerationLois {
 		res = save = 0;
 		
 		for(int i = 0 ; i<NB_VALEUR ; i++) {
-			System.out.println("UNIFORME : " + LoiUniforme());
+			System.out.println("UNIFORME : " + loiUniforme());
 		}
 		
 		for(int i = 0 ; i<NB_VALEUR ; i++) {
-			System.out.println("EXPONENTIELLE : " + LoiExponentielle(1));
+			System.out.println("EXPONENTIELLE : " + loiExponentielle(1));
 		}
 		
 		for(int i = 0 ; i<NB_VALEUR ; i++) {
-			System.out.println("NORMALE : " + LoiNormale(0,1));
+			System.out.println("NORMALE : " + loiNormale(0,1));
 			
-			res= LoiNormale(4,1);
+			res= loiNormale(4,1);
 			save += res;
 		}
 		
