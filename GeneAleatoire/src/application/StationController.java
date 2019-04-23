@@ -6,6 +6,7 @@ import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import metier.GenerationLois;
 
@@ -87,6 +88,33 @@ public class StationController {
 	private Button btNormale;
 	@FXML
 	private Button btPoisson;
+	
+	@FXML
+	private Label lbDegres;
+	@FXML
+	private Label lbKhi2;
+	
+	@FXML
+	private TextField khiClasse1;
+	@FXML
+	private TextField khiClasse2;
+	@FXML
+	private TextField khiClasse3;
+	@FXML
+	private TextField khiClasse4;
+	@FXML
+	private TextField khiClasse5;
+	@FXML
+	private TextField khiClasse6;
+	@FXML
+	private TextField khiClasse7;
+	@FXML
+	private TextField khiClasse8;
+	@FXML
+	private TextField khiClasse9;
+	@FXML
+	private TextField khiClasse10;
+	
 
 	/** Nombre de jets de simulation*/
 	private int nbJets = 100;
