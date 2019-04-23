@@ -94,6 +94,8 @@ public class StationController {
 	private Label lbDegres;
 	@FXML
 	private Label lbKhi2;
+	@FXML
+	private Label lbKhi2Theorique;
 	
 	@FXML
 	private Label moyenneTheorique;

@@ -497,7 +497,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="465.0" layoutY="437.0" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #F4F4F4;" text="12,59" textFill="#09557c">
+            <Label fx:id="lbKhi2Theorique" layoutX="465.0" layoutY="437.0" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #F4F4F4;" text="null" textFill="#09557c">
                <font>
                   <Font size="20.0" />
                </font>
@@ -507,9 +507,29 @@
                   <Font size="11.0" />
                </font>
             </Label>
-            <Label fx:id="lbDegres" layoutX="549.0" layoutY="392.0" style="-fx-background-color: #F4F4F4;" text="6" textFill="#ff0f0f">
+            <Label fx:id="lbDegres" layoutX="549.0" layoutY="392.0" style="-fx-background-color: #F4F4F4;" text="null" textFill="#ff0f0f">
                <font>
                   <Font name="System Bold" size="11.0" />
+               </font>
+            </Label>
+            <Label layoutX="105.0" layoutY="504.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: #F4F4F4;" text="Moyenne théorique : " textFill="#09557c">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="105.0" layoutY="541.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-color: #F4F4F4;" text="Moyenne observée : " textFill="#09557c">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="moyenneTheorique" layoutX="300.0" layoutY="504.0" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #F4F4F4;" text="null" textFill="RED">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="moyenneObservee" layoutX="300.0" layoutY="541.0" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #F4F4F4;" text="null" textFill="RED">
+               <font>
+                  <Font size="20.0" />
                </font>
             </Label>
          </children>
