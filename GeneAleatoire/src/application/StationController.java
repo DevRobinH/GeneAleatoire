@@ -170,6 +170,12 @@ public class StationController {
 		th8.setText(null);
 		th9.setText(null);
 		th10.setText(null);
+		
+		lbDegres.setText("null");
+		lbKhi2.setText("null");
+		lbKhi2Theorique.setText("null");
+		moyenneTheorique.setText("null");
+		moyenneObservee.setText("null");	
 	}
 
 
