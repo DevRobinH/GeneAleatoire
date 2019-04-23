@@ -1,6 +1,7 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javafx.event.ActionEvent;
@@ -234,11 +235,18 @@ public class StationController {
 		System.out.println("\nAction loi uniforme");
         // tableau servant à obtenir n_obs
 		int repartition[] = new int[10];
-		
+		//tableau contenant le khi2 de chaque
+		double khi[] = new double[10];
 		// somme de toutes les valeurs générées
-		int somme = 0;
+		double somme = 0;
+		// total des khi2
+		double totalKhi = 0;
 		// Liste des valeurs générées
 		List<Double> valAleas = new ArrayList<>();
+		// moyenne des valeurs aléatoire créées
+		double moyenne;
+		//Espérance de la loi uniforme
+		double esperance;
 		
 		//initialisation des champs texte de classe
 		classe1.setText("0-0,1");
@@ -284,9 +292,23 @@ public class StationController {
 			// calcul de la somme
 			somme += nbAlea;
 		}
-		
+		// calcul de la moyenne
+		moyenne = somme/nbJets;
+		// calcul de l'espérance
+		Collections.sort(valAleas);
+		esperance = (valAleas.get(0) + valAleas.get(valAleas.size()-1)) /2;
+		System.out.println(moyenne);
+		System.out.println(valAleas.get(0));
+		System.out.println(valAleas.get(valAleas.size()-1));
+		System.out.println(esperance);
 		// obtention du n_th
 		int n_th = this.nbJets/10;
+		
+		// Détermination du khi2 de chaque classe
+		for(int i = 0; i < repartition.length; i++) {
+			khi[i] = Math.pow((repartition[i]-n_th), 2) / n_th;
+			totalKhi += khi[i];
+		}
 		
 		// On va compléter les cases n_obs de l'ihm
 		obs1.setText(Integer.toString(repartition[0]));
