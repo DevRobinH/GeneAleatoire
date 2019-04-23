@@ -6,12 +6,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class StationController {
-	
+
 	@FXML
 	private TextField jets;
 	@FXML
 	private TextField lambda;
-	
+
 	@FXML
 	private TextField classe1;
 	@FXML
@@ -53,7 +53,7 @@ public class StationController {
 	private TextField obs9;
 	@FXML
 	private TextField obs10;
-	
+
 	@FXML
 	private TextField th1;
 	@FXML
@@ -74,7 +74,7 @@ public class StationController {
 	private TextField th9;
 	@FXML
 	private TextField th10;
-	
+
 	@FXML
 	private Button btUniforme;
 	@FXML
@@ -83,12 +83,18 @@ public class StationController {
 	private Button btNormale;
 	@FXML
 	private Button btPoisson;
+
+	/** Nombre de jets de simulation*/
+	private int nbJets = 100;
 	
+	/** Paramètre lambda de la fonction exp*/
+	private int lambdaExp = 2;
+
 	/**
 	 * Réinitialise tous les champs
 	 */
 	public void reinitialiser(ActionEvent evt){
-		
+
 		// Vide les classes
 		classe1.setText(null);
 		classe2.setText(null);
@@ -100,7 +106,7 @@ public class StationController {
 		classe8.setText(null);
 		classe9.setText(null);
 		classe10.setText(null);
-		
+
 		// Vide les valeurs observées
 		obs1.setText(null);
 		obs2.setText(null);
@@ -112,7 +118,7 @@ public class StationController {
 		obs8.setText(null);
 		obs9.setText(null);
 		obs10.setText(null);
-		
+
 		// Vide les valeurs théoriques
 		th1.setText(null);
 		th2.setText(null);
@@ -125,74 +131,66 @@ public class StationController {
 		th9.setText(null);
 		th10.setText(null);
 	}
-	
+
+
 	/**
 	 * Récupère le nombre de jets
 	 */
-	public int recupNbJets(){
-		
+	public void recupNbJets(){
+
 		// On récupère le champ du nombre de jets
 		String recup = jets.getText();
-		
-		int nbJetsChoisis = 0;
-		
+
 		// Si le champ à récupérer n'est pas null
 		if (!recup.equals("")){
-			
+
 			// On le récupère
-			nbJetsChoisis = Integer.parseInt(recup);
-			
+			this.nbJets = Integer.parseInt(recup);
+
 			System.out.println("\nNombre de jets :");
-			System.out.println(nbJetsChoisis);
-			return nbJetsChoisis;
+			System.out.println(this.nbJets);
 		}
 		else{
 			System.out.println("\nErreur récupération nombre de jets");
-			return 0;
 		}
 
 	}
-	
+
 	/**
 	 * Récupère lambda, le paramètre pour la loi exponentielle
 	 */
-	public int recupLambda(){
-		
+	public void recupLambda(){
+
 		// On récupère le champ de lambda
 		String recup = lambda.getText();
-		
-		int lambdaChoisi = 0;
-		
+
 		// Si le champ à récupérer n'est pas null
 		if (!recup.equals("")){
-			
+
 			// On le récupère
-			lambdaChoisi = Integer.parseInt(recup);
-			
+			lambdaExp = Integer.parseInt(recup);
+
 			System.out.println("\nLambda:");
-			System.out.println(lambdaChoisi);				
-			
-			return lambdaChoisi;
+			System.out.println(this.lambdaExp);				
 		}
 		else{
 			System.out.println("\nErreur récupération Lambda");
-			return 0;
 		}
 	}
-	
+
 	/**
 	 * Définit le nombre de jets
 	 * 
 	 * @param Evenement au clic du bouton "Simuler"
 	 */
 	public void actionSimuler(ActionEvent evt){
-		
-		int nbJets = recupNbJets();
-		int lambda = recupLambda();
-		
+
+		recupNbJets();
+		recupLambda();
+
 		System.out.println("\nAction Simuler");
 	}
-	
+
 	/**
 	 * Génère des nombres aléatoire en suivant la loi Uniforme
 	 * 
@@ -200,7 +198,7 @@ public class StationController {
 	 */
 	public void actionLoiUniforme(ActionEvent evt){
 		System.out.println("\nAction loi uniforme");
-		
+
 		//initialisation des champs texte de classe
 		classe1.setText("0-0,1");
 		classe2.setText("0,1-0,2");
@@ -213,7 +211,7 @@ public class StationController {
 		classe9.setText("0,8-0,9");
 		classe10.setText("0,9-1,0");
 	}
-	
+
 	/**
 	 * Génère des nombres aléatoire en suivant la loi Exponentielle
 	 * 
@@ -221,8 +219,17 @@ public class StationController {
 	 */
 	public void actionLoiExpo(ActionEvent evt){
 		System.out.println("\nAction loi Exponentielle");
+		//initialisation des champs texte de classe
+		classe1.setText("0-0,05");
+		classe2.setText("0,05-0,1");
+		classe3.setText("0,1-0,2");
+		classe4.setText("0,2-0,3");
+		classe5.setText("0,3-0,5");
+		classe6.setText("0,5-0,8");
+		classe7.setText("0,8-1,1");
+		classe8.setText("1,1-10");
 	}
-	
+
 	/**
 	 * Génère des nombres aléatoire en suivant la loi Normale
 	 * 
@@ -230,8 +237,16 @@ public class StationController {
 	 */
 	public void actionLoiNormale(ActionEvent evt){
 		System.out.println("\nAction loi Normale");
+		//initialisation des champs texte de classe
+		classe1.setText("<- 1,0");
+		classe2.setText("-1");
+		classe3.setText("-0,6");
+		classe4.setText("-0,2");
+		classe5.setText("0,2");
+		classe6.setText("0,6");
+		classe7.setText("> 1");
 	}
-	
+
 	/**
 	 * Génère des nombres aléatoire en suivant la loi Poisson
 	 * 
@@ -240,6 +255,19 @@ public class StationController {
 	public void actionLoiPoisson(ActionEvent evt){
 		System.out.println("\nAction loi Poisson");
 	}
-	
+	/**
+	 * @return the nbJets
+	 */
+	public int getNbJets() {
+		return nbJets;
+	}
+
+	/**
+	 * @param nbJets the nbJets to set
+	 */
+	public void setNbJets(int nbJets) {
+		this.nbJets = nbJets;
+	}
+
 
 }
