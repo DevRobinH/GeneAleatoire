@@ -24,7 +24,7 @@ public class GenerationLois {
 	
 	
 	/**
-	 * Génaration de nombre aléatoire en suivant une loi uniforme
+	 * Génération de nombre aléatoire en suivant une loi uniforme
 	 * @return  un nombre compris entre 0.0 et 1.0
 	 */
 	public static double loiUniforme() {
@@ -43,7 +43,7 @@ public class GenerationLois {
         // Génération d'un nombre aléatoire
 		double x = loiUniforme();		
 		
-		return -(1/lambda) * Math.log(1 - x);	
+		return -(1/lambda) * Math.log(x);	
 	}
 	
 	/**
@@ -59,19 +59,16 @@ public class GenerationLois {
 	}
 	
 	/** Génération de nombre aléatoire suivant une loi de poisson discrete
-	 * @param lambda 
-	 * @param T 
-	 * @return res
+	 * @param lambda paramètre de la loi exponentielle
+	 * @param T interval de temps
 	 */
 	public static int loiPoisson(double lambda, double T) {				
-		double res;
 		double expo = 0;
 		int compteur;
 		
 		for (compteur = 0 ; expo < T ; compteur++) {
 			expo += loiExponentielle(lambda);
 		}
-		
 		return compteur;
 	}
 	
@@ -79,16 +76,12 @@ public class GenerationLois {
 	 * Génération de nombre aléatoire suivant une loi de Weibull
 	 * @param alpha 
 	 * @param beta 
-	 * @return res
 	 */
 	public static double loiWeibull(double alpha, double beta) {
-		
-		double res;
-		
+		// Génération d'un nombre aléatoire suivant une loi uniforme
 		double y = loiUniforme();
 		
-		res = Math.pow((-(Math.log(1-y)/Math.pow(alpha, beta))),1/beta);
-		return res;	
+		return Math.pow((-(Math.log(1-y)/Math.pow(alpha, beta))),1/beta);	
 	}
 
 	/**
