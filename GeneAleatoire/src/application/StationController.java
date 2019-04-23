@@ -263,16 +263,16 @@ public class StationController {
 		double esperance;
 
 		//initialisation des champs texte de classe
-		classe1.setText("0-0,1");
-		classe2.setText("0,1-0,2");
-		classe3.setText("0,2-0,3");
-		classe4.setText("0,3-0,4");
-		classe5.setText("0,4-0,5");
-		classe6.setText("0,5-0,6");
-		classe7.setText("0,6-0,7");
-		classe8.setText("0,7-0,8");
-		classe9.setText("0,8-0,9");
-		classe10.setText("0,9-1,0");
+		classe1.setText("0 à 0,1");
+		classe2.setText("0,1 à 0,2");
+		classe3.setText("0,2 à 0,3");
+		classe4.setText("0,3 à 0,4");
+		classe5.setText("0,4 à 0,5");
+		classe6.setText("0,5 à 0,6");
+		classe7.setText("0,6 à 0,7");
+		classe8.setText("0,7 à 0,8");
+		classe9.setText("0,8 à 0,9");
+		classe10.setText("0,9 à 1,0");
 
 		//génération des nombres aléatoires
 		for(int i =0; i < this.nbJets; i++) {
@@ -365,8 +365,8 @@ public class StationController {
 		lbKhi2Theorique.setText("16,92");
 
 		// ecriture moyenne
-		moyenneTheorique.setText(Double.toString(esperance));
-		moyenneObservee.setText(Double.toString(moyenne));
+		moyenneTheorique.setText(String.format("%.2f", esperance));
+		moyenneObservee.setText(String.format("%.2f", moyenne));
 	}
 
 	/**
@@ -394,6 +394,7 @@ public class StationController {
 		int n_th[] = {9,8,14,12,18,16,9,12};
 
 		//initialisation des champs texte de classe
+<<<<<<< HEAD
 		classe1.setText("0-0,05");
 		classe2.setText("0,05-0,1");
 		classe3.setText("0,1-0,2");
@@ -403,6 +404,17 @@ public class StationController {
 		classe7.setText("0,8-1,1");
 		classe8.setText("1,1-10");
 
+=======
+		classe1.setText("0 à 0,05");
+		classe2.setText("0,05 à 0,1");
+		classe3.setText("0,1 à 0,2");
+		classe4.setText("0,2 à 0,3");
+		classe5.setText("0,3 à 0,5");
+		classe6.setText("0,5 à 0,8");
+		classe7.setText("0,8 à 1,1");
+		classe8.setText("1,1 à 10");
+		
+>>>>>>> branch 'master' of https://github.com/DevRobinH/GeneAleatoire.git
 
 		//génération des nombres aléatoires
 		for(int i =0; i < this.nbJets; i++) {
@@ -481,9 +493,15 @@ public class StationController {
 		lbKhi2Theorique.setText("14,07");
 
 		// ecriture moyenne
+<<<<<<< HEAD
 		moyenneTheorique.setText(Double.toString(esperance));
 		moyenneObservee.setText(Double.toString(moyenne));
 
+=======
+		moyenneTheorique.setText(String.format("%.2f", esperance));
+		moyenneObservee.setText(String.format("%.2f", moyenne));
+		
+>>>>>>> branch 'master' of https://github.com/DevRobinH/GeneAleatoire.git
 		// ecriture degrès
 		lbDegres.setText("7");
 	}
