@@ -392,7 +392,7 @@ public class StationController {
 		double esperance;
 		// tableau contenant les n_th
 		int n_th[] = {9,8,14,12,18,16,9,12};
-		
+
 		//initialisation des champs texte de classe
 		classe1.setText("0-0,05");
 		classe2.setText("0,05-0,1");
@@ -402,7 +402,7 @@ public class StationController {
 		classe6.setText("0,5-0,8");
 		classe7.setText("0,8-1,1");
 		classe8.setText("1,1-10");
-		
+
 
 		//génération des nombres aléatoires
 		for(int i =0; i < this.nbJets; i++) {
@@ -483,7 +483,7 @@ public class StationController {
 		// ecriture moyenne
 		moyenneTheorique.setText(Double.toString(esperance));
 		moyenneObservee.setText(Double.toString(moyenne));
-		
+
 		// ecriture degrès
 		lbDegres.setText("7");
 	}
@@ -498,13 +498,23 @@ public class StationController {
 		// On vide au préalable les champs
 		reinitialiser();
 		System.out.println("\nAction loi Normale");
-		
-		// Détermination nombre de degré		
-		lbDegres.setText("6");
-		
-		// Khi² théorique
-		lbKhi2Theorique.setText("12,59");
-		
+		// tableau servant à obtenir n_obs
+		int repartition[] = new int[7];
+		//tableau contenant le khi2 de chaque
+		double khi[] = new double[7];
+		// somme de toutes les valeurs générées
+		double somme = 0;
+		// total des khi2
+		double totalKhi = 0;
+		// Liste des valeurs générées
+		List<Double> valAleas = new ArrayList<>();
+		// moyenne des valeurs aléatoire créées
+		double moyenne;
+		//Espérance de la loi uniforme
+		double esperance;
+		// tableau contenant les n_th
+		int n_th[] = {16,12,15,16,15,12,16};
+
 		// initialisation des champs texte de classe
 		classe1.setText("<- 1");
 		classe2.setText("-1 à -0.6");
@@ -513,6 +523,84 @@ public class StationController {
 		classe5.setText("0,2 à 0,6");
 		classe6.setText("0,6 à 1");
 		classe7.setText("> 1");		
+
+		//génération des nombres aléatoires
+		for(int i =0; i < this.nbJets; i++) {
+			// Génération d'un nombre aléatoire
+			double nbAlea = GenerationLois.loiNormale();
+			// determination de n_obs
+			if (nbAlea < -1 ) {
+				repartition[0]++;
+			} else if (nbAlea < -0.6 ) {
+				repartition[1]++;
+			} else if (nbAlea < -0.2 ) {
+				repartition[2]++;
+			} else if (nbAlea < 0.2 ) {
+				repartition[3]++; 
+			} else if (nbAlea < 0.6 ) {
+				repartition[4]++;
+			} else if (nbAlea < 1 ) {
+				repartition[5]++;
+			} else {
+				repartition[6]++;
+			}
+
+			// ajout du nombre créé à la liste
+			valAleas.add(nbAlea);
+			// calcul de la somme
+			somme += nbAlea;
+		}
+
+		// calcul de la moyenne
+		moyenne = somme/nbJets;
+		// calcul de l'espérance
+		esperance = 1 / this.lambdaExp;
+		System.out.println(lambdaExp);
+		System.out.println(moyenne);
+		System.out.println(esperance);
+
+		// Détermination du khi2 de chaque classe
+		for(int i = 0; i < repartition.length; i++) {
+			khi[i] = Math.pow((repartition[i]- n_th[i]), 2) / n_th[i];
+			totalKhi += khi[i];
+		}
+
+		// On va compléter les cases n_obs de l'ihm
+		obs1.setText(Integer.toString(repartition[0]));
+		obs2.setText(Integer.toString(repartition[1]));
+		obs3.setText(Integer.toString(repartition[2]));
+		obs4.setText(Integer.toString(repartition[3]));
+		obs5.setText(Integer.toString(repartition[4]));
+		obs6.setText(Integer.toString(repartition[5]));
+		obs7.setText(Integer.toString(repartition[6]));
+
+		// On va compléter les cases n_th de l'ihm
+		th1.setText("16");
+		th2.setText("12");
+		th3.setText("15");
+		th4.setText("16");
+		th5.setText("15");
+		th6.setText("12");
+		th7.setText("16");
+
+		// On va compléter les cases n_th de l'ihm
+		khiClasse1.setText(Double.toString(khi[0]));
+		khiClasse2.setText(Double.toString(khi[1]));
+		khiClasse3.setText(Double.toString(khi[2]));
+		khiClasse4.setText(Double.toString(khi[3]));
+		khiClasse5.setText(Double.toString(khi[4]));
+		khiClasse6.setText(Double.toString(khi[5]));
+		khiClasse7.setText(Double.toString(khi[6]));
+
+		// Détermination nombre de degré		
+		lbDegres.setText("6");
+		// ecriture moyenne
+		moyenneTheorique.setText(Double.toString(esperance));
+		moyenneObservee.setText(Double.toString(moyenne));
+
+		// Khi² théorique
+		lbKhi2.setText(Double.toString(Math.round(totalKhi)));
+		lbKhi2Theorique.setText("12,59");
 	}
 
 	/**
