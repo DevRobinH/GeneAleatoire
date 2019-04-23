@@ -96,6 +96,11 @@ public class StationController {
 	private Label lbKhi2;
 	
 	@FXML
+	private Label moyenneTheorique;
+	@FXML
+	private Label moyenneObservee;
+	
+	@FXML
 	private TextField khiClasse1;
 	@FXML
 	private TextField khiClasse2;
