@@ -1,6 +1,5 @@
 package application;
 
-import metier.GenerationLois;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -94,7 +93,7 @@ public class StationController {
 	/**
 	 * Réinitialise tous les champs
 	 */
-	public void reinitialiser(){
+	public void reinitialiser(ActionEvent evt){
 
 		// Vide les classes
 		classe1.setText(null);
@@ -219,13 +218,8 @@ public class StationController {
 	 * @param Evenement au clic du bouton "Loi Exponentielle"
 	 */
 	public void actionLoiExpo(ActionEvent evt){
-		
-		// Tout les cases sont vidées
-		reinitialiser();
-		
 		System.out.println("\nAction loi Exponentielle");
-		
-		// Initialisation des champs texte de classe
+		//initialisation des champs texte de classe
 		classe1.setText("0-0,05");
 		classe2.setText("0,05-0,1");
 		classe3.setText("0,1-0,2");
@@ -234,19 +228,6 @@ public class StationController {
 		classe6.setText("0,5-0,8");
 		classe7.setText("0,8-1,1");
 		classe8.setText("1,1-10");
-		
-		// Initialisation des champs texte de n_th
-		th1.setText("9");
-		th2.setText("8");
-		th3.setText("14");
-		th4.setText("12");
-		th5.setText("18");
-		th6.setText("16");
-		th7.setText("9");
-		th8.setText("12");
-		
-		// Génération des n_obs
-		
 	}
 
 	/**
