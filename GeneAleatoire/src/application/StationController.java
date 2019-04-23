@@ -362,6 +362,11 @@ public class StationController {
 		
 		// Ecriture du khi2_th
 		lbKhi2.setText(Double.toString(Math.round(totalKhi)));
+		lbKhi2Theorique.setText("16,92");
+		
+		// ecriture moyenne
+		moyenneTheorique.setText(Double.toString(esperance));
+		moyenneObservee.setText(Double.toString(moyenne));
 	}
 
 	/**
