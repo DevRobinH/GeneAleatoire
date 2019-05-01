@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.StationController">
    <center>
       <Pane prefHeight="600.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
@@ -32,7 +32,7 @@
                   <Image url="@3iLcomplet.png" />
                </image>
             </ImageView>
-            <LineChart layoutX="50.0" layoutY="139.0">
+            <LineChart fx:id="lineChart" layoutX="50.0" layoutY="139.0" title="Figuration d'un processus de Poisson">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -40,8 +40,8 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </LineChart>
-            <Button layoutX="247.0" layoutY="539.0" mnemonicParsing="false" text="Démarrer" />
-            <Button layoutX="338.0" layoutY="539.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="Arrêter" />
+            <Button fx:id="btDemarrer" layoutX="247.0" layoutY="539.0" mnemonicParsing="false" onAction="#actionDemarrer" text="Démarrer" />
+            <Button fx:id="btArreter" layoutX="338.0" layoutY="539.0" mnemonicParsing="false" onAction="#actionArreter" prefHeight="25.0" prefWidth="63.0" text="Arrêter" />
          </children>
       </Pane>
    </center>

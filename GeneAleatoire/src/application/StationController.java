@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -129,6 +130,8 @@ public class StationController {
 	@FXML
 	private TextField khiClasse10;
 
+	@FXML
+	private LineChart lineChart;
 
 	/** Nombre de jets de simulation*/
 	private int nbJets = 100;
@@ -649,5 +652,25 @@ public class StationController {
 		this.nbJets = nbJets;
 	}
 
+	
+	/**
+	 * Exécute le programme
+	 * 
+	 * @param Evenement au clic du bouton "Démarrer"
+	 */
+	public void actionDemarrer(ActionEvent evt){
 
+		System.out.println("\n bt Démarrer");
+	}
+	
+	/**
+	 * Stoppe le programme
+	 * 
+	 * @param Evenement au clic du bouton "Arrêter"
+	 */
+	public void actionArreter(ActionEvent evt){
+
+		System.out.println("\n bt Arrêter");
+	}
+	
 }
