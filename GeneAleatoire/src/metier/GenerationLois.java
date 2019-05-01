@@ -130,7 +130,7 @@ public class GenerationLois {
 		System.out.println("Moyenne : " + save / NB_VALEUR);*/
 
 		// test de la loi de poisson
-		int T = 10;
+		int T = 50;
 		double lambda = 2;
 		int nbTire = 0;
 		double somme = 0;
@@ -147,11 +147,17 @@ public class GenerationLois {
 			calcul = valPoisson.get(valPoisson.size()-1);
 		}
 		nbEventIntervalle = somme/100;
-		//nbEventIntervalleTh = Math.exp(-lambda*T) * (Math.pow((lambda*T),100) / factorielle(100));
+		nbEventIntervalleTh = Math.exp(-lambda) * (Math.pow((lambda),20) / factorielle(20));
 		System.out.println("Moyenne obs poisson : " + nbEventIntervalle);
-        System.out.println("Moyenne th poisson : " + nbEventIntervalleTh );
+        System.out.println("Moyenne th poisson : " + lambda*T );
 		System.out.println("Moyenne th expo :" + 1/lambda );
 		System.out.println("Moyenne obs expo :" + calcul/nbTire );
 
+		
+		System.out.println("test pour flo");
+		for(int i = 0; i < valPoisson.size(); i++) {
+			System.out.println(lambda*(Math.exp(-lambda * valPoisson.get(i))));
+		}
+		
 	}
 }
