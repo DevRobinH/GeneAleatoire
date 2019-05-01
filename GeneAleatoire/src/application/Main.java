@@ -12,7 +12,10 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("Station.fxml"));
+			/*BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("Station.fxml"));
+			Scene scene = new Scene(root,600,600);*/
+			
+			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("ProcessusPoisson.fxml"));
 			Scene scene = new Scene(root,600,600);
 			
 			// Titre de la fenetre
