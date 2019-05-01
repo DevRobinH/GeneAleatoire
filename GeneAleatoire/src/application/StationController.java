@@ -694,6 +694,19 @@ public class StationController {
 	}
 	
 	/**
+	 * Generation de valeurs suivant un processus de poisson
+	 * @param lambda cadence 
+	 * @param T intervalle de temps sur lequel va être généré les évènements
+	 */
+	public void generationPoisson(int lambda, int T) {
+		// On va générer un nombre infini d'intervalle
+		// Chaque intervalle de temps T génèrera un nombre d'èvènement
+		for(;;) {
+		         	
+		}
+	}
+	
+	/**
 	 * Insère des données dans le graphe
 	 */
 	public void insertData(){

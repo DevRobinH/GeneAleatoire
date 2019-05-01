@@ -130,7 +130,8 @@ public class GenerationLois {
 		System.out.println("Moyenne : " + save / NB_VALEUR);*/
 
 		// test de la loi de poisson
-		int T = 50;
+		int T = 100;
+		double sommeEcart = 0;
 		double lambda = 2;
 		int nbTire = 0;
 		double somme = 0;
@@ -149,15 +150,26 @@ public class GenerationLois {
 		nbEventIntervalle = somme/100;
 		nbEventIntervalleTh = Math.exp(-lambda) * (Math.pow((lambda),20) / factorielle(20));
 		System.out.println("Moyenne obs poisson : " + nbEventIntervalle);
-        System.out.println("Moyenne th poisson : " + lambda*T );
+		System.out.println("Moyenne th poisson : " + lambda*T );
 		System.out.println("Moyenne th expo :" + 1/lambda );
 		System.out.println("Moyenne obs expo :" + calcul/nbTire );
 
-		
+
 		System.out.println("test pour flo");
 		for(int i = 0; i < valPoisson.size(); i++) {
-			System.out.println(lambda*(Math.exp(-lambda * valPoisson.get(i))));
+			if (i == 0) {
+				//System.out.println("Valeur de t0 :" + valPoisson.get(i));
+				sommeEcart+= valPoisson.get(i);
+				System.out.println(valPoisson.get(i));
+			} else {
+				double diff = valPoisson.get(i)-valPoisson.get(i-1);
+				//System.out.println("Différence entre t" + i + " et t" + (i-1) + ": "+ diff );
+				System.out.println(diff);
+				sommeEcart+= diff;
+			}
+			//System.out.println(lambda*(Math.exp((-lambda) * valPoisson.get(i))));
 		}
-		
+		//System.out.println(sommeEcart/valPoisson.size());
+
 	}
 }
