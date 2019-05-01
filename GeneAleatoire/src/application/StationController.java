@@ -91,6 +91,11 @@ public class StationController {
 	private Button btPoisson;
 
 	@FXML
+	private Button btDemarrer;
+	@FXML
+	private Button btArreter;
+	
+	@FXML
 	private Label lbDegres;
 	@FXML
 	private Label lbKhi2;
