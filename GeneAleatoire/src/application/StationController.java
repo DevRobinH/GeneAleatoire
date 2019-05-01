@@ -38,7 +38,7 @@ public class StationController {
 	private int nbJets = 100;
 
 	// Paramètre lambda de la fonction exp
-	private double cadence = 2;
+	private int cadence = 2;
 
 	// T de poisson
 	private int T = 2;
@@ -57,9 +57,16 @@ public class StationController {
 
 	// Moyenne théorique de la loi de Expo
 	private double moyenneThExpo;
-
-	// Moyenne observé loi de Expo
+	
+	// Moyenne théorique de la loi de Expo
 	private double moyenneObsExpo;
+
+	// Liste des moyennes obs poisson par interval
+	private ArrayList<Double> listeMoyennesObsPoisson = new ArrayList<>();
+	
+	// Liste des moyennes obs poisson par interval
+	private ArrayList<Double> listeMoyennesObsExpo = new ArrayList<>();
+	
 	/**
 	 * Exécute le programme
 	 * 
@@ -70,6 +77,10 @@ public class StationController {
 		System.out.println("\n bt Démarrer");
 		clearChart();
 		insertData();
+		recupIntervalle();
+		recupLambdaCadence();
+		recupNbJets();
+		generationPoisson(cadence, T);
 	}
 
 
@@ -83,29 +94,47 @@ public class StationController {
 		double[] val; //tableau tampon contennat les valeurs d'un intervalle
 		double somme = 0; // variable tampon pour le calcul des moyennes obs
 		double sommeEcart = 0;
+		double nbEvTotal= 0;
+		this.nbEvtJets = new int[this.nbJets];
 		// On va générer un nombre nbJets d'intervalle
 		// Chaque intervalle de temps T génèrera un nombre d'èvènement
 		for(int i = 0 ; i < this.nbJets ; i++) {
 			// On simule un processus de poisson
 			nbEv = GenerationLois.loiPoisson(lambda, T);
+			//System.out.println("POISSON : " + nbEv);
 			// On stock le nombre d'évènement dans un tableau
 			this.nbEvtJets[i] = nbEv;
 			val = new double[nbEv];
 			// On stock dans une liste un tableau contenant les valeurs de chaque évènement
 			for (int j = 0; j < GenerationLois.valPoisson.size(); j++) {
 				val[j] = GenerationLois.valPoisson.get(j);
+				//System.out.println(val[j]);
 			}
 			// On stock le tableau des valeurs dans une liste
 			this.valEvts.add(val);
+			// on stock les moyenne obs expo dans la liste
+			listeMoyennesObsExpo.add(val[val.length-1]/nbEv);
 			// incrementation de la somme
 			somme += nbEv;
+			sommeEcart += val[val.length-1];
+			nbEvTotal += nbEv;
 		}
 		// Calcul des moyennes th
 		this.moyenneThPoisson = lambda*T;
-		this.moyenneThExpo = 1/lambda;
+		this.moyenneThExpo = 1/(double)lambda;
 		// Calcul des moyennes obs 
-		this.moyenneThPoisson = somme/this.nbJets;
+		this.moyenneObsPoisson = somme/this.nbJets;
+		this.moyenneObsExpo = sommeEcart/nbEvTotal;
 		
+		System.out.println("Moyenne Expo th : " + this.moyenneThExpo);
+		System.out.println("Moyenne Expo obs : " + this.moyenneObsExpo);
+		System.out.println("Moyenne Poisson th : " + this.moyenneThPoisson);
+		System.out.println("Moyenne Poisson obs : " + this.moyenneObsPoisson);
+		
+		/*for(int i = 0 ; i < listeMoyennesObsExpo.size(); i++) {
+			System.out.println(listeMoyennesObsExpo.get(i));
+		}*/
+
 	}
 
 	/**

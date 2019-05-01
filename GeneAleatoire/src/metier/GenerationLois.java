@@ -160,16 +160,16 @@ public class GenerationLois {
 			if (i == 0) {
 				//System.out.println("Valeur de t0 :" + valPoisson.get(i));
 				sommeEcart+= valPoisson.get(i);
-				System.out.println(valPoisson.get(i));
+				//System.out.println(valPoisson.get(i));
 			} else {
 				double diff = valPoisson.get(i)-valPoisson.get(i-1);
 				//System.out.println("Différence entre t" + i + " et t" + (i-1) + ": "+ diff );
-				System.out.println(diff);
+			//	System.out.println(diff);
 				sommeEcart+= diff;
 			}
 			//System.out.println(lambda*(Math.exp((-lambda) * valPoisson.get(i))));
 		}
-		//System.out.println(sommeEcart/valPoisson.size());
+		System.out.println(sommeEcart/valPoisson.size());
 
 	}
 }
