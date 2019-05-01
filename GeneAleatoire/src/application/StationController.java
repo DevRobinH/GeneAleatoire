@@ -1,5 +1,7 @@
 package application;
 
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
@@ -7,23 +9,24 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import metier.GenerationLois;
 
 public class StationController {
 
 	@FXML
 	private BarChart<String, Number> barChart;
-	
+
 	@FXML
 	private LineChart<Number, Number> lineChartExpo;
-	
+
 	@FXML
 	private LineChart<Number, Number> lineChartPoisson;
-	
+
 	@FXML
 	private Button btDemarrer;
 	@FXML
 	private Button btArreter;
-	
+
 	@FXML
 	private TextField lambdaCadence;
 	@FXML
@@ -36,10 +39,27 @@ public class StationController {
 
 	// Paramètre lambda de la fonction exp
 	private double cadence = 2;
-	
+
 	// T de poisson
 	private int T = 2;
-	
+
+	// Tableau contenant le nombre d'évènement tiré pour chaque simulation (jet)
+	private int[] nbEvtJets;
+
+	// Liste qui contiendra un tableau qui contiendra les évènement de chaque jet
+	private ArrayList<double[]> valEvts = new ArrayList<>();
+
+	// Moyenne théorique de la loi de Poisson
+	private double moyenneThPoisson;
+
+	// Moyenne observé loi de Poisson
+	private double moyenneObsPoisson;
+
+	// Moyenne théorique de la loi de Expo
+	private double moyenneThExpo;
+
+	// Moyenne observé loi de Expo
+	private double moyenneObsExpo;
 	/**
 	 * Exécute le programme
 	 * 
@@ -51,41 +71,63 @@ public class StationController {
 		clearChart();
 		insertData();
 	}
-	
-	
+
+
 	/**
 	 * Generation de valeurs suivant un processus de poisson
 	 * @param lambda cadence 
 	 * @param T intervalle de temps sur lequel va être généré les évènements
 	 */
 	public void generationPoisson(int lambda, int T) {
-		// On va générer un nombre infini d'intervalle
+		int nbEv; // nombre d'évènement sur l'interval
+		double[] val; //tableau tampon contennat les valeurs d'un intervalle
+		double somme = 0; // variable tampon pour le calcul des moyennes obs
+		double sommeEcart = 0;
+		// On va générer un nombre nbJets d'intervalle
 		// Chaque intervalle de temps T génèrera un nombre d'èvènement
-		for(;;) {
-		         	
+		for(int i = 0 ; i < this.nbJets ; i++) {
+			// On simule un processus de poisson
+			nbEv = GenerationLois.loiPoisson(lambda, T);
+			// On stock le nombre d'évènement dans un tableau
+			this.nbEvtJets[i] = nbEv;
+			val = new double[nbEv];
+			// On stock dans une liste un tableau contenant les valeurs de chaque évènement
+			for (int j = 0; j < GenerationLois.valPoisson.size(); j++) {
+				val[j] = GenerationLois.valPoisson.get(j);
+			}
+			// On stock le tableau des valeurs dans une liste
+			this.valEvts.add(val);
+			// incrementation de la somme
+			somme += nbEv;
 		}
+		// Calcul des moyennes th
+		this.moyenneThPoisson = lambda*T;
+		this.moyenneThExpo = 1/lambda;
+		// Calcul des moyennes obs 
+		this.moyenneThPoisson = somme/this.nbJets;
+		
 	}
-	
+
 	/**
 	 * Insère des données dans le graphe
 	 */
 	public void insertData(){
-		
+
 		XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
-		
+
 		for(int i=0; i<20; i++){
 			series.getData().add(new XYChart.Data<String, Number>("t"+i, 1));
-			
+
 		}
-		
+
 		barChart.getData().add(series);
 	}
-	
+
 	/**
 	 * Récupère le lambda et l'assigne variable global
 	 */
 	public void recupLambdaCadence(){
-		
+
 		// On récupère le champ de lambda
 		String recup = lambdaCadence.getText();
 
@@ -102,9 +144,9 @@ public class StationController {
 			System.out.println("\nErreur récupération Lambda");
 		}
 	}
-	
+
 	public void recupIntervalle(){
-		
+
 		// On récupère le champ de l'intervalle
 		String recup = intervalle.getText();
 
@@ -121,7 +163,7 @@ public class StationController {
 			System.out.println("\nErreur récupération Intervalle");
 		}
 	}
-	
+
 	/**
 	 * Récupère le nombre de jets
 	 */
@@ -144,7 +186,7 @@ public class StationController {
 		}
 
 	}
-	
+
 	/**
 	 * Stoppe le programme
 	 * 
@@ -155,17 +197,17 @@ public class StationController {
 		System.out.println("\n bt Arrêter");
 		clearChart();
 	}
-	
+
 	/**
 	 * Vide les données des graphes
 	 */
 	public void clearChart(){
-		
+
 		barChart.getData().clear();	
 		lineChartExpo.getData().clear();
 		lineChartPoisson.getData().clear();
-		
+
 		System.out.println("\n Données vidées");
 	}
-		
+
 }
