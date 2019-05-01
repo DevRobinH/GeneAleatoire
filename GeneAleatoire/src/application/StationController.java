@@ -6,7 +6,8 @@ import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.chart.LineChart;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -131,7 +132,7 @@ public class StationController {
 	private TextField khiClasse10;
 
 	@FXML
-	private LineChart lineChart;
+	private BarChart<String, Number> barChart;
 
 	/** Nombre de jets de simulation*/
 	private int nbJets = 100;
@@ -661,6 +662,8 @@ public class StationController {
 	public void actionDemarrer(ActionEvent evt){
 
 		System.out.println("\n bt Démarrer");
+		clearChart();
+		insertData();
 	}
 	
 	/**
@@ -673,4 +676,25 @@ public class StationController {
 		System.out.println("\n bt Arrêter");
 	}
 	
+	/**
+	 * Insère des données dans le graphe
+	 */
+	public void insertData(){
+		
+		XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
+		
+		series.getData().add(new XYChart.Data<String, Number>("t0", 1));
+		series.getData().add(new XYChart.Data<String, Number>("t1", 1));
+		series.getData().add(new XYChart.Data<String, Number>("t2", 1));
+		series.getData().add(new XYChart.Data<String, Number>("t3", 1));
+		barChart.getData().add(series);
+	}
+	
+	/**
+	 * Vide les données du graphe
+	 */
+	public void clearChart(){
+		barChart.getData().clear();
+		System.out.println("\n Données vidées");
+	}
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -32,16 +32,16 @@
                   <Image url="@3iLcomplet.png" />
                </image>
             </ImageView>
-            <LineChart fx:id="lineChart" layoutX="50.0" layoutY="139.0" title="Figuration d'un processus de Poisson">
+            <Button fx:id="btDemarrer" layoutX="247.0" layoutY="551.0" mnemonicParsing="false" onAction="#actionDemarrer" text="Démarrer" />
+            <Button fx:id="btArreter" layoutX="328.0" layoutY="551.0" mnemonicParsing="false" onAction="#actionArreter" prefHeight="25.0" prefWidth="63.0" text="Arrêter" />
+            <BarChart fx:id="barChart" layoutX="50.0" layoutY="123.0" title="Figuration d'un processus de Poisson">
               <xAxis>
-                <CategoryAxis side="BOTTOM" />
+                <CategoryAxis label="Temps" side="BOTTOM" />
               </xAxis>
               <yAxis>
-                <NumberAxis side="LEFT" />
+                <NumberAxis label="Etat" side="LEFT" />
               </yAxis>
-            </LineChart>
-            <Button fx:id="btDemarrer" layoutX="247.0" layoutY="539.0" mnemonicParsing="false" onAction="#actionDemarrer" text="Démarrer" />
-            <Button fx:id="btArreter" layoutX="338.0" layoutY="539.0" mnemonicParsing="false" onAction="#actionArreter" prefHeight="25.0" prefWidth="63.0" text="Arrêter" />
+            </BarChart>
          </children>
       </Pane>
    </center>
