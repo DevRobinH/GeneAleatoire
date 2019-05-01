@@ -674,6 +674,7 @@ public class StationController {
 	public void actionArreter(ActionEvent evt){
 
 		System.out.println("\n bt Arrêter");
+		clearChart();
 	}
 	
 	/**
@@ -683,10 +684,11 @@ public class StationController {
 		
 		XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
 		
-		series.getData().add(new XYChart.Data<String, Number>("t0", 1));
-		series.getData().add(new XYChart.Data<String, Number>("t1", 1));
-		series.getData().add(new XYChart.Data<String, Number>("t2", 1));
-		series.getData().add(new XYChart.Data<String, Number>("t3", 1));
+		for(int i=0; i<20; i++){
+			series.getData().add(new XYChart.Data<String, Number>("t"+i, 1));
+			
+		}
+		
 		barChart.getData().add(series);
 	}
 	
