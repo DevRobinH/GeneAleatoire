@@ -4,6 +4,7 @@
  */
 package metier;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -24,7 +25,7 @@ public class GenerationLois {
 	public final static int NB_VALEUR = 1000;
 
 	/** Map clé compteur val valeur générée par loi poisson */
-	public static HashMap<Integer,Double> valPoisson = new HashMap<>();
+	public static ArrayList<Double> valPoisson = new ArrayList<>();
 
 	/**
 	 * Génération de nombre aléatoire en suivant une loi uniforme
@@ -72,7 +73,7 @@ public class GenerationLois {
 		valPoisson.clear();
 		for (compteur = 0 ; expo < T ; compteur++) {
 			expo += loiExponentielle(lambda);
-			valPoisson.put(compteur, expo);  
+			valPoisson.add(expo);  
 		}
 		return compteur;
 	}
@@ -139,19 +140,18 @@ public class GenerationLois {
 		for (int i =0; i < 100; i++) {
 			nbTire = loiPoisson(lambda, T);
 			System.out.println("POISSON : " + nbTire );
-			for (HashMap.Entry<Integer, Double> entry : valPoisson.entrySet())
-			{
-				System.out.print(entry.getKey() + ": ");
-				System.out.println(entry.getValue());
-				
+			for (int j = 0 ; j < valPoisson.size(); j++) {
+				System.out.println(valPoisson.get(j));
 			}
 			somme += nbTire;
+			calcul = valPoisson.get(valPoisson.size()-1);
 		}
 		nbEventIntervalle = somme/100;
 		//nbEventIntervalleTh = Math.exp(-lambda*T) * (Math.pow((lambda*T),100) / factorielle(100));
-		System.out.println("Moyenne obs : " + nbEventIntervalle);
-        System.out.println("Moyenne th : " + nbEventIntervalleTh );
+		System.out.println("Moyenne obs poisson : " + nbEventIntervalle);
+        System.out.println("Moyenne th poisson : " + nbEventIntervalleTh );
 		System.out.println("Moyenne th expo :" + 1/lambda );
+		System.out.println("Moyenne obs expo :" + calcul/nbTire );
 
 	}
 }
