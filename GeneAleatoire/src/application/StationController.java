@@ -4,23 +4,12 @@ import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import metier.GenerationLois;
 
 public class StationController {
-
-	@FXML
-	private BarChart<String, Number> barChart;
-
-	@FXML
-	private LineChart<Number, Number> lineChartExpo;
-
-	@FXML
-	private LineChart<Number, Number> lineChartPoisson;
 
 	@FXML
 	private Button btDemarrer;
@@ -33,6 +22,15 @@ public class StationController {
 	private TextField intervalle;
 	@FXML
 	private TextField jets;
+	
+	@FXML
+	private Label lbMoyenneThPoisson;
+	@FXML
+	private Label lbMoyenneThExpo;
+	@FXML
+	private Label lbMoyenneObsPoisson;
+	@FXML
+	private Label lbMoyenneObsExpo;
 
 	// Nombre de jets de simulation
 	private int nbJets = 100;
@@ -60,9 +58,6 @@ public class StationController {
 	
 	// Moyenne théorique de la loi de Expo
 	private double moyenneObsExpo;
-
-	// Liste des moyennes obs poisson par interval
-	private ArrayList<Double> listeMoyennesObsPoisson = new ArrayList<>();
 	
 	// Liste des moyennes obs poisson par interval
 	private ArrayList<Double> listeMoyennesObsExpo = new ArrayList<>();
@@ -76,11 +71,11 @@ public class StationController {
 
 		System.out.println("\n bt Démarrer");
 		clearChart();
-		insertData();
 		recupIntervalle();
 		recupLambdaCadence();
 		recupNbJets();
 		generationPoisson(cadence, T);
+		insertData();
 	}
 
 
@@ -141,15 +136,14 @@ public class StationController {
 	 * Insère des données dans le graphe
 	 */
 	public void insertData(){
+		
+		lbMoyenneThPoisson.setText(String.format("%.3f",this.moyenneThPoisson));
+		lbMoyenneThExpo.setText(String.format("%.3f",this.moyenneThExpo));
+		
+		lbMoyenneObsPoisson.setText(String.format("%.3f",this.moyenneObsPoisson));
+		lbMoyenneObsExpo.setText(String.format("%.3f",this.moyenneObsExpo));
 
-		XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
-
-		for(int i=0; i<20; i++){
-			series.getData().add(new XYChart.Data<String, Number>("t"+i, 1));
-
-		}
-
-		barChart.getData().add(series);
+		
 	}
 
 	/**
@@ -231,10 +225,6 @@ public class StationController {
 	 * Vide les données des graphes
 	 */
 	public void clearChart(){
-
-		barChart.getData().clear();	
-		lineChartExpo.getData().clear();
-		lineChartPoisson.getData().clear();
 
 		System.out.println("\n Données vidées");
 	}

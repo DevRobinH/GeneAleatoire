@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.chart.BarChart?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -12,25 +8,15 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.StationController">
    <center>
-      <Pane prefHeight="600.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="550.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Rectangle arcHeight="25.0" arcWidth="25.0" disable="true" fill="#ffffff00" height="168.0" layoutX="15.0" layoutY="376.0" stroke="#dedede" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="1.0" strokeType="INSIDE" width="281.0" />
+            <Rectangle arcHeight="25.0" arcWidth="25.0" disable="true" fill="#ffffff00" height="125.0" layoutX="15.0" layoutY="376.0" stroke="#dedede" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="1.0" strokeType="INSIDE" width="281.0" />
             <Rectangle arcHeight="25.0" arcWidth="25.0" disable="true" fill="#ffffff00" height="224.0" layoutX="22.0" layoutY="131.0" stroke="#dedede" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="1.0" strokeType="INSIDE" width="556.0" />
-            <BarChart fx:id="barChart" alternativeRowFillVisible="false" animated="false" categoryGap="30.0" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" layoutX="30.0" layoutY="153.0" legendVisible="false" prefHeight="182.0" prefWidth="549.0" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
-              <xAxis>
-                <CategoryAxis side="BOTTOM" tickMarkVisible="false" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis animated="false" minorTickVisible="false" prefHeight="103.0" prefWidth="21.0" side="LEFT" tickLabelsVisible="false" tickMarkVisible="false" upperBound="1.0" />
-              </yAxis>
-            </BarChart>
-            <Label layoutX="50.0" layoutY="186.0" text="1" />
             <Rectangle arcHeight="25.0" arcWidth="25.0" disable="true" fill="#ffffff00" height="36.0" layoutX="77.0" layoutY="20.0" stroke="#28cbf8" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="1.0" strokeType="INSIDE" width="434.0" />
             <Label layoutX="101.0" layoutY="25.0" text="TP2" textFill="#09557c">
                <font>
@@ -47,17 +33,13 @@
                   <Image url="@3iLcomplet.png" />
                </image>
             </ImageView>
-            <Button fx:id="btDemarrer" layoutX="225.0" layoutY="561.0" mnemonicParsing="false" onAction="#actionDemarrer" prefHeight="25.0" prefWidth="74.0" text="Démarrer" />
-            <Button fx:id="btArreter" layoutX="304.0" layoutY="561.0" mnemonicParsing="false" onAction="#actionArreter" prefHeight="25.0" prefWidth="77.0" text="Arrêter" />
-            <Line endX="391.3333740234375" endY="1.52587890625E-5" fill="#909090" layoutX="170.0" layoutY="195.0" startX="-100.0" stroke="#a7a7a7" style="-fx-stroke-dash-array: 5;" />
+            <Button fx:id="btDemarrer" layoutX="222.0" layoutY="514.0" mnemonicParsing="false" onAction="#actionDemarrer" prefHeight="25.0" prefWidth="74.0" text="Démarrer" />
+            <Button fx:id="btArreter" layoutX="301.0" layoutY="514.0" mnemonicParsing="false" onAction="#actionArreter" prefHeight="25.0" prefWidth="77.0" text="Arrêter" />
             <Label layoutX="57.0" layoutY="121.0" style="-fx-background-color: #F4F4F4;" text=" Figuration d'un processus de Poisson " textFill="#09557c">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="50.0" layoutY="309.0" text="0" />
-            <Label layoutX="77.0" layoutY="169.0" text="Etat" />
-            <Label layoutX="535.0" layoutY="329.0" text="Temps" />
             <Label layoutX="251.0" layoutY="81.0" style="-fx-background-color: #F4F4F4;" text="T" textFill="#09557c">
                <font>
                   <Font name="System Bold" size="16.0" />
@@ -78,33 +60,17 @@
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextField>
-            <LineChart fx:id="lineChartExpo" layoutX="15.0" layoutY="386.0" prefHeight="155.0" prefWidth="278.0">
-              <xAxis>
-                <CategoryAxis side="BOTTOM" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis side="LEFT" />
-              </yAxis>
-            </LineChart>
             <Label layoutX="50.0" layoutY="366.0" style="-fx-background-color: #F4F4F4;" text=" Grand Nombre Exponentielle " textFill="#09557c">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Rectangle arcHeight="25.0" arcWidth="25.0" disable="true" fill="#ffffff00" height="168.0" layoutX="307.0" layoutY="376.0" stroke="#dedede" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="1.0" strokeType="INSIDE" width="281.0" />
+            <Rectangle arcHeight="25.0" arcWidth="25.0" disable="true" fill="#ffffff00" height="126.0" layoutX="307.0" layoutY="376.0" stroke="#dedede" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="1.0" strokeType="INSIDE" width="281.0" />
             <Label layoutX="342.0" layoutY="366.0" style="-fx-background-color: #F4F4F4;" text="Grand Nombre Poisson " textFill="#09557c">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <LineChart fx:id="lineChartPoisson" layoutX="309.0" layoutY="386.0" prefHeight="155.0" prefWidth="278.0">
-               <xAxis>
-                  <CategoryAxis side="BOTTOM" />
-               </xAxis>
-               <yAxis>
-                  <NumberAxis side="LEFT" />
-               </yAxis>
-            </LineChart>
             <TextField fx:id="jets" layoutX="385.0" layoutY="81.0" prefHeight="25.0" prefWidth="47.0">
                <cursor>
                   <Cursor fx:constant="TEXT" />
@@ -113,6 +79,46 @@
             <Label layoutX="326.0" layoutY="81.0" style="-fx-background-color: #F4F4F4;" text="Nb Jets" textFill="#09557c">
                <font>
                   <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="413.0" prefHeight="30.0" prefWidth="183.0" style="-fx-background-color: #F4F4F4;" text="Moyenne théorique : " textFill="#09557c">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="447.0" prefHeight="30.0" prefWidth="216.0" style="-fx-background-color: #F4F4F4;" text="Moyenne observée : " textFill="#09557c">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbMoyenneThExpo" layoutX="208.0" layoutY="413.0" prefHeight="30.0" prefWidth="65.0" style="-fx-background-color: #F4F4F4;" text="null" textFill="RED">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbMoyenneObsExpo" layoutX="208.0" layoutY="447.0" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #F4F4F4;" text="null" textFill="RED">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="328.0" layoutY="415.0" prefHeight="30.0" prefWidth="174.0" style="-fx-background-color: #F4F4F4;" text="Moyenne théorique : " textFill="#09557c">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="328.0" layoutY="449.0" prefHeight="30.0" prefWidth="199.0" style="-fx-background-color: #F4F4F4;" text="Moyenne observée : " textFill="#09557c">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbMoyenneThPoisson" layoutX="504.0" layoutY="415.0" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #F4F4F4;" text="null" textFill="RED">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbMoyenneObsPoisson" layoutX="504.0" layoutY="449.0" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #F4F4F4;" text="null" textFill="RED">
+               <font>
+                  <Font size="20.0" />
                </font>
             </Label>
          </children>
