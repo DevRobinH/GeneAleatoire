@@ -176,7 +176,18 @@ public class StationController {
 		lbKhi2.setText("null");
 		lbKhi2Theorique.setText("null");
 		moyenneTheorique.setText("null");
-		moyenneObservee.setText("null");	
+		moyenneObservee.setText("null");
+		
+		khiClasse1.setText(null);
+		khiClasse2.setText(null);
+		khiClasse3.setText(null);
+		khiClasse4.setText(null);
+		khiClasse5.setText(null);
+		khiClasse6.setText(null);
+		khiClasse7.setText(null);
+		khiClasse8.setText(null);
+		khiClasse9.setText(null);
+		khiClasse10.setText(null);
 	}
 
 
@@ -247,6 +258,7 @@ public class StationController {
 		// On vide au préalable les champs
 		reinitialiser();
 		System.out.println("\nAction loi uniforme");
+		
 		// tableau servant à obtenir n_obs
 		int repartition[] = new int[10];
 		//tableau contenant le khi2 de chaque
@@ -367,6 +379,9 @@ public class StationController {
 		// ecriture moyenne
 		moyenneTheorique.setText(String.format("%.2f", esperance));
 		moyenneObservee.setText(String.format("%.2f", moyenne));
+		
+		// ecriture degrès
+		lbDegres.setText("9");
 	}
 
 	/**
@@ -375,6 +390,9 @@ public class StationController {
 	 * @param Evenement au clic du bouton "Loi Exponentielle"
 	 */
 	public void actionLoiExpo(ActionEvent evt){
+		
+		reinitialiser();
+		
 		System.out.println("\nAction loi Exponentielle");
 		// tableau servant à obtenir n_obs
 		int repartition[] = new int[8];
@@ -592,15 +610,16 @@ public class StationController {
 		khiClasse6.setText(Double.toString(khi[5]));
 		khiClasse7.setText(Double.toString(khi[6]));
 
-		// Détermination nombre de degré		
-		lbDegres.setText("6");
 		// ecriture moyenne
-		moyenneTheorique.setText(Double.toString(esperance));
-		moyenneObservee.setText(Double.toString(moyenne));
+		moyenneTheorique.setText("0,00");
+		moyenneObservee.setText(String.format("%.2f", moyenne));
 
 		// Khi² théorique
 		lbKhi2.setText(Double.toString(Math.round(totalKhi)));
 		lbKhi2Theorique.setText("12,59");
+		
+		// ecriture degrès
+		lbDegres.setText("6");
 	}
 
 	/**
