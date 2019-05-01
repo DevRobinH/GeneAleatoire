@@ -709,10 +709,14 @@ public class StationController {
 	}
 	
 	/**
-	 * Vide les données du graphe
+	 * Vide les données des graphes
 	 */
 	public void clearChart(){
-		barChart.getData().clear();
+		
+		barChart.getData().clear();	
+		
 		System.out.println("\n Données vidées");
 	}
+	
+	
 }
