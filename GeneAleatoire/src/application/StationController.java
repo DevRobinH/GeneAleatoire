@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -93,11 +94,6 @@ public class StationController {
 	private Button btPoisson;
 
 	@FXML
-	private Button btDemarrer;
-	@FXML
-	private Button btArreter;
-	
-	@FXML
 	private Label lbDegres;
 	@FXML
 	private Label lbKhi2;
@@ -131,8 +127,28 @@ public class StationController {
 	@FXML
 	private TextField khiClasse10;
 
+	// TP2
 	@FXML
 	private BarChart<String, Number> barChart;
+	
+	@FXML
+	private LineChart<Number, Number> lineChartExpo;
+	
+	@FXML
+	private LineChart<Number, Number> lineChartPoisson;
+	
+	@FXML
+	private Button btDemarrer;
+	@FXML
+	private Button btArreter;
+	
+	@FXML
+	private TextField lambdaCadence;
+	@FXML
+	private TextField intervalle;
+	
+	
+	
 
 	/** Nombre de jets de simulation*/
 	private int nbJets = 100;
