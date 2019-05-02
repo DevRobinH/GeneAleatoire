@@ -127,8 +127,6 @@
             <Line endX="394.7070617675781" endY="25.999996185302734" layoutX="-331.0" layoutY="173.0" startX="871.3333740234375" startY="26.000015258789062" stroke="#b2b2b2" style="-fx-stroke-dash-array: 5;" />
             <Label layoutX="525.0" layoutY="323.0" text="Temps" />
             <Label layoutX="80.0" layoutY="169.0" text="Etat" />
-            <Label layoutX="45.0" layoutY="190.0" text="1" />
-            <Label layoutX="45.0" layoutY="310.0" text="0" />
          </children>
       </Pane>
    </center>

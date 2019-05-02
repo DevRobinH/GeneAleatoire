@@ -84,7 +84,7 @@ public class StationController {
 		// Valeurs par défaut de lambda, T et nbJets
 		lambdaCadence.setText("2");
 		intervalle.setText("10");
-		jets.setText("250");
+		jets.setText("5");
 		
 		// Le lineChart est ajouté dans la Vbox
 		vb.getChildren().add(lc);
@@ -98,15 +98,16 @@ public class StationController {
 		lc.setHorizontalGridLinesVisible(false);
 		lc.setVerticalGridLinesVisible(false);
 		
-		// Pas de nombres sur X et Y
-		xAxis.setTickLabelsVisible(false);
-		yAxis.setTickLabelsVisible(false);
+		// Plage sur l'axe des abscisses
+		xAxis.setAutoRanging(false);
+		xAxis.setUpperBound(10);
+		xAxis.setLowerBound(0);
 		
-		// Pas de graduations
-		xAxis.setMinorTickVisible(false);
-		xAxis.setTickMarkVisible(false);
-		yAxis.setMinorTickVisible(false);
-		yAxis.setTickMarkVisible(false);
+		// Plage sur l'axe des ordonnées
+		yAxis.setAutoRanging(false);
+		yAxis.setUpperBound(1);
+		yAxis.setLowerBound(0);
+		
 	}
 	
 	
@@ -191,10 +192,12 @@ public class StationController {
 		lbMoyenneObsPoisson.setText(String.format("%.3f",this.moyenneObsPoisson));
 		lbMoyenneObsExpo.setText(String.format("%.3f",this.moyenneObsExpo));
 		
-		// test
-		tracer_line(1.34, 1.00);
-		tracer_line(3.34, 1.00);
-		tracer_line(7.34, 1.00);
+		// Affichage des valeurs
+		for (int i=0; i<valEvts.size(); i++){
+			for (int j=0; j<valEvts.get(i).length; j++){
+				tracer_line(valEvts.get(i)[j], 1.00);
+			}
+		}
 
 	}
 
