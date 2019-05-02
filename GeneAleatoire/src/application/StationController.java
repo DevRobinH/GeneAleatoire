@@ -4,9 +4,12 @@ import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Orientation;
 import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart.Data;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import metier.GenerationLois;
@@ -37,7 +40,6 @@ public class StationController {
 	
 	@FXML
 	private VBox vb = new VBox();
-	
 	
 	final NumberAxis xAxis = new NumberAxis();
     final NumberAxis yAxis = new NumberAxis();
@@ -79,11 +81,33 @@ public class StationController {
 	@FXML
 	private void initialize(){
 		
+		// Valeurs par défaut de lambda, T et nbJets
+		lambdaCadence.setText("2");
+		intervalle.setText("10");
+		jets.setText("250");
+		
 		// Le lineChart est ajouté dans la Vbox
 		vb.getChildren().add(lc);
+		
+		/* Config du lineChart */
+		
+		// Pas de légende
+		lc.setLegendVisible(false);
+		
+		// Pas de grille horizontales et verticales
+		lc.setHorizontalGridLinesVisible(false);
+		lc.setVerticalGridLinesVisible(false);
+		
+		// Pas de nombres sur X et Y
+		xAxis.setTickLabelsVisible(false);
+		yAxis.setTickLabelsVisible(false);
+		
+		// Pas de graduations
+		xAxis.setMinorTickVisible(false);
+		xAxis.setTickMarkVisible(false);
+		yAxis.setMinorTickVisible(false);
+		yAxis.setTickMarkVisible(false);
 	}
-	
-	
 	
 	
 	/**
@@ -166,10 +190,28 @@ public class StationController {
 		
 		lbMoyenneObsPoisson.setText(String.format("%.3f",this.moyenneObsPoisson));
 		lbMoyenneObsExpo.setText(String.format("%.3f",this.moyenneObsExpo));
-
 		
+		// test
+		tracer_line(1.34, 1.00);
+		tracer_line(3.34, 1.00);
+		tracer_line(7.34, 1.00);
+
 	}
 
+	public void tracer_line(double x, double y){
+		Data<Number, Number> verticalMarker = new Data<>(x, y);
+	    lc.addVerticalValueMarker(verticalMarker);
+	    
+	    Slider verticalMarkerSlider = new Slider(xAxis.getLowerBound(), xAxis.getUpperBound(), 0);
+	    verticalMarkerSlider.setOrientation(Orientation.HORIZONTAL);
+	    verticalMarkerSlider.setShowTickLabels(true);
+	    verticalMarkerSlider.valueProperty().bindBidirectional(verticalMarker.XValueProperty());
+	    verticalMarkerSlider.minProperty().bind(xAxis.lowerBoundProperty());
+	    verticalMarkerSlider.maxProperty().bind(xAxis.upperBoundProperty());
+}
+	
+	
+	
 	/**
 	 * Récupère le lambda et l'assigne variable global
 	 */

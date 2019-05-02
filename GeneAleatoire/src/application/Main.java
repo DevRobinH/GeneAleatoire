@@ -16,7 +16,7 @@ public class Main extends Application {
 			Scene scene = new Scene(root,600,600);*/
 			
 			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("ProcessusPoisson.fxml"));
-			Scene scene = new Scene(root,600,600);
+			Scene scene = new Scene(root,600,570);
 			
 			// Titre de la fenetre
 			primaryStage.setTitle("Station Service Carburant");
