@@ -4,10 +4,13 @@ import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import metier.GenerationLois;
+import metier.LineChartWithMarkers;
 
 public class StationController {
 
@@ -31,6 +34,16 @@ public class StationController {
 	private Label lbMoyenneObsPoisson;
 	@FXML
 	private Label lbMoyenneObsExpo;
+	
+	@FXML
+	private VBox vb = new VBox();
+	
+	
+	final NumberAxis xAxis = new NumberAxis();
+    final NumberAxis yAxis = new NumberAxis();
+    
+	@FXML
+	LineChartWithMarkers<Number, Number> lc = new LineChartWithMarkers<Number, Number>(xAxis, yAxis);
 
 	// Nombre de jets de simulation
 	private int nbJets = 100;
@@ -61,6 +74,17 @@ public class StationController {
 	
 	// Liste des moyennes obs poisson par interval
 	private ArrayList<Double> listeMoyennesObsExpo = new ArrayList<>();
+	
+	// Appelé au lancement de l'application
+	@FXML
+	private void initialize(){
+		
+		// Le lineChart est ajouté dans la Vbox
+		vb.getChildren().add(lc);
+	}
+	
+	
+	
 	
 	/**
 	 * Exécute le programme
