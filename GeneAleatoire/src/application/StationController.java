@@ -214,7 +214,7 @@ public class StationController {
 				// On insère une ligne verticale de hauteur 1
 				setVerticalBar(valEvts.get(i)[j], 1.00);
 				
-				/*System.out.println(valEvts.get(i)[j]);
+				System.out.println(valEvts.get(i)[j]);
 				long value = (long)valEvts.get(i)[j];
 				System.out.println(value);
 				
@@ -225,7 +225,7 @@ public class StationController {
 		        } catch (InterruptedException ie)
 		        {
 		            Thread.currentThread().interrupt();
-		        }*/		
+		        }	
 			}
 		}
 	}
