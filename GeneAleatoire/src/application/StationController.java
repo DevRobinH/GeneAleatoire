@@ -212,7 +212,7 @@ public class StationController {
 			for (int j=0; j<valEvts.get(i).length; j++){
 				
 				// On insère une ligne verticale de hauteur 1
-				tracer_line(valEvts.get(i)[j], 1.00);
+				setVerticalBar(valEvts.get(i)[j], 1.00);
 				
 				/*System.out.println(valEvts.get(i)[j]);
 				long value = (long)valEvts.get(i)[j];
@@ -231,20 +231,25 @@ public class StationController {
 	}
 
 	/**
-	 * Trace une barre sur notre graphe "lc"
+	 * Trace une barre verticale sur notre graphe
 	 * @param x : valeur en abscisse
 	 * @param y : valeur en ordonnée
 	 */
-	public void tracer_line(double x, double y){
-		Data<Number, Number> verticalMarker = new Data<>(x, y);
-	    lc.addVerticalValueMarker(verticalMarker);
+	public void setVerticalBar(double x, double y){
+		
+		// La barre est crée selon les paramètres x et y
+		Data<Number, Number> verticalBar = new Data<>(x, y);
+		
+		// Ajout de la barre au graphe
+	    lc.addVerticalValueMarker(verticalBar);
 	    
-	    Slider verticalMarkerSlider = new Slider(xAxis.getLowerBound(), xAxis.getUpperBound(), 0);
-	    verticalMarkerSlider.setOrientation(Orientation.HORIZONTAL);
-	    verticalMarkerSlider.setShowTickLabels(true);
-	    verticalMarkerSlider.valueProperty().bindBidirectional(verticalMarker.XValueProperty());
-	    verticalMarkerSlider.minProperty().bind(xAxis.lowerBoundProperty());
-	    verticalMarkerSlider.maxProperty().bind(xAxis.upperBoundProperty());
+	    // Personnalisation
+	    Slider verticalBarSlider = new Slider(xAxis.getLowerBound(), xAxis.getUpperBound(), 0);
+	    verticalBarSlider.setOrientation(Orientation.HORIZONTAL);
+	    verticalBarSlider.setShowTickLabels(true);
+	    verticalBarSlider.valueProperty().bindBidirectional(verticalBar.XValueProperty());
+	    verticalBarSlider.minProperty().bind(xAxis.lowerBoundProperty());
+	    verticalBarSlider.maxProperty().bind(xAxis.upperBoundProperty());
 	}
 	
 	/**
