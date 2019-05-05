@@ -1,6 +1,9 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -77,6 +80,9 @@ public class StationController {
 	// Liste des moyennes obs poisson par interval
 	private ArrayList<Double> listeMoyennesObsExpo = new ArrayList<>();
 	
+	private int counter = 0;
+	
+	
 	// Appelé au lancement de l'application
 	@FXML
 	private void initialize(){
@@ -119,11 +125,19 @@ public class StationController {
 	public void actionDemarrer(ActionEvent evt){
 
 		System.out.println("\n bt Démarrer");
+		
+		// On vide le graphe
 		clearChart();
+		
+		// Récupération des paramètres saisis
 		recupIntervalle();
 		recupLambdaCadence();
 		recupNbJets();
+		
+		// Nombre aléatoire suivant une loi de Poisson, avec paramètres
 		generationPoisson(cadence, T);
+		
+		// Insère les données dans le graphe
 		insertData();
 	}
 
@@ -191,16 +205,36 @@ public class StationController {
 		
 		lbMoyenneObsPoisson.setText(String.format("%.3f",this.moyenneObsPoisson));
 		lbMoyenneObsExpo.setText(String.format("%.3f",this.moyenneObsExpo));
-		
-		// Affichage des valeurs
+
+        
+		// On boucle sur notre dictionnaire de données
 		for (int i=0; i<valEvts.size(); i++){
 			for (int j=0; j<valEvts.get(i).length; j++){
+				
+				// On insère une ligne verticale de hauteur 1
 				tracer_line(valEvts.get(i)[j], 1.00);
+				
+				/*System.out.println(valEvts.get(i)[j]);
+				long value = (long)valEvts.get(i)[j];
+				System.out.println(value);
+				
+		        try {
+			
+			        Thread.sleep(value);
+
+		        } catch (InterruptedException ie)
+		        {
+		            Thread.currentThread().interrupt();
+		        }*/		
 			}
 		}
-
 	}
 
+	/**
+	 * Trace une barre sur notre graphe "lc"
+	 * @param x : valeur en abscisse
+	 * @param y : valeur en ordonnée
+	 */
 	public void tracer_line(double x, double y){
 		Data<Number, Number> verticalMarker = new Data<>(x, y);
 	    lc.addVerticalValueMarker(verticalMarker);
@@ -211,9 +245,7 @@ public class StationController {
 	    verticalMarkerSlider.valueProperty().bindBidirectional(verticalMarker.XValueProperty());
 	    verticalMarkerSlider.minProperty().bind(xAxis.lowerBoundProperty());
 	    verticalMarkerSlider.maxProperty().bind(xAxis.upperBoundProperty());
-}
-	
-	
+	}
 	
 	/**
 	 * Récupère le lambda et l'assigne variable global
@@ -295,6 +327,14 @@ public class StationController {
 	 */
 	public void clearChart(){
 
+		// Supprime les barres du graphe
+		lc.removeAllVerticalMarker();
+		
+		// Supprime les valeurs dans notre tableau
+		for(int i=0; i<valEvts.size();i++){
+			valEvts.remove(i);
+		}
+				
 		System.out.println("\n Données vidées");
 	}
 
